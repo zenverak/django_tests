@@ -1,0 +1,7 @@
+1. create folder that contains project
+2. python -m virtualenv myvenv
+    a. myvenv/bin/activate to activate it
+3. django-admin.py startproject mysite .    (mysite can be anything)
+4. manage.py migreate
+5. manage.py runserver
+6.
