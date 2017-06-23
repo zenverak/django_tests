@@ -7,15 +7,14 @@ class AuthenticationForm(forms.Form):
     username = forms.CharField(max_length=25,label="UserName")
     password = forms.CharField(widget=forms.PasswordInput())
 
-    class Meta:
-        fiels = ['username', 'password']
+
 
 
 class SignUp(forms.Form):
 
     class Meta:
         model = User
-        fields = ['email', 'username', 'password']
+        fields = ('email', 'username', 'password',)
 
 
 class PersonAdd(forms.Form):

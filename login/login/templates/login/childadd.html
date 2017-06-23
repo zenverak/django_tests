@@ -1,0 +1,18 @@
+{% extends 'login/base.html' %}
+
+{% block content %}
+<div class="page-header">
+   <h1><a href="/">Add a Child</a></h1>
+</div>
+<div class="content container">
+    <div class="row">
+        <div class="col-md-8">
+            
+            <form method="POST" class='post-form'>{% csrf_token %}
+                  {{ form }}
+                <button type="submit" class="save btn btn-default"> Add A Child </button>
+            </form>
+		</div>
+	</div>
+</div>
+{% endblock %}
