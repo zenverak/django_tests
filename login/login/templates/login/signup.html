@@ -1,3 +1,4 @@
+{% extends 'login/base_beforelogin.html' %}
 {% block content %}
 <form method="POST">{% csrf_token %}
     {{ form.as_table }}
