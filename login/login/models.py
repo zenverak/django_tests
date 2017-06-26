@@ -33,5 +33,9 @@ class School(models.Model):
     school_types = (('Elementary', 'Elementary School'), ('Middle','Middle School'), ('High', 'High School'), ('Vocational', 'Vocational School'),)
     school_type = models.CharField(max_length=20, choices=school_types, default='Elementary')
 
+class RandIds(models.Model):
+    id_number = models.CharField(max_length=15, primary_key=True)
+    
+
 
 

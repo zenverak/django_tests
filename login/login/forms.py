@@ -10,7 +10,7 @@ class AuthenticationForm(forms.Form):
 
 
 
-class SignUp(forms.Form):
+class SignUp(forms.ModelForm):
     email = forms.CharField(max_length=100)
     username = forms.CharField(max_length=100)
     password = forms.CharField(max_length=100)
@@ -19,7 +19,7 @@ class SignUp(forms.Form):
         fields = ('email', 'username', 'password',)
 
 
-class PersonAdd(forms.Form):
+class PersonAdd(forms.ModelForm):
 
     class Meta:
         fields = ('first_name', 'middle_name', 'last_name', 'dob', 'address')

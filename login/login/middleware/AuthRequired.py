@@ -7,16 +7,33 @@ class AuthRequiredMiddleware(object):
         self.get_response = get_response
         self.valid_paths = ['/', '/login/','/signup/']
 
-    def __call__(self, request):
-        # Code to be executed for each request before
-        # the view (and later middleware) are called.
-        print request.path
-##        try:
-##            print "reverse is {0}".format(reverse('/'))
-##        except:
-##            print 'oops'
+    def process_view(self, request):
+        header_token = request.META.get('HTTP_AUTHORIZATION', None)
+        if header_token is not None:
+          try:
+            token = sub('Token ', '', request.META.get('HTTP_AUTHORIZATION', None))
+            token_obj = Token.objects.get(key = token)
+            request.user = token_obj.user
+          except Token.DoesNotExist:
+            pass
+        #This is now the correct user
+        print (request.user)
+        return request
 
-        response = self.get_response(request)
+
+    def __call__(self, request):
+        print "before process view"
+        print "request is {0}".format(request)
+        print "user is {0}".format(request.user)
+        print "chached is {0}".format(request._cached_user)
+        request = self.process_view(request)
+        print "AFTER PROCESS VIEW"
+        print "request is {0}".format(request)
+        print "user is {0}".format(request.user)
+        print "chached is {0}".format(request._cached_user)
+
+        #response = self.get_response(request)
+        print "RESPONSE is {0}".format(response)
         print "user is authenticated is {0}".format(request.user.is_authenticated())
         if not request.user.is_authenticated():
             if not request.path in self.valid_paths:

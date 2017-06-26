@@ -7,6 +7,8 @@ from django.contrib.auth import login, logout
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
+from numpy.random import randint
+from models import RandIds
 
 
 def Start(request):
@@ -42,11 +44,27 @@ def LoginUser(request):
         return render(request, 'login/login.html', {'form':form})
 
 def ParentAdd(request):
+
+    def _random_id():
+        pre_num = randint(0,10,8)
+        str_int = ''
+        for num in pre_num:
+            str_int = str_int + str(num)
+        return str_int
+
+    def _get_new_id():
+        num = ''
+        while True:
+            num = _random_id()
+            if RandIds.objects.filter(id_number=num).count() == 0:
+                break
+        return num
     if request.method == "POST":
         form = ParentAddForm(request.POST)
-        parent = form.save()
+        parent = form.save(commit=False)
+        parent.parent_id = _get_new_id()
         parent.save()
-        return render(request,'login/parentlist.html', {'id':parent.parent_id})
+        return render(request, 'login/parent.html', {'parent':parent})
     else:
         form = ParentAddForm()
         return render(request, 'login/parentadd.html', {'form':form})
