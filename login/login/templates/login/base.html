@@ -1,13 +1,15 @@
+{# {% if user.is_authenticated %} #}
 {% load staticfiles %}
 <html>
 <head>
 </head>
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-		<link rel="stylesheet" href="{% static 'css/debt_tracker.css' %}">
+		<link rel="stylesheet" href="{% static 'css/login.css' %}">
 <body class="body_design">
     {% block content %}
     {% endblock %}
 
 </body>
 </html>
+{# {% endif %} #}

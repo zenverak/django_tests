@@ -22,7 +22,7 @@ class SignUp(forms.ModelForm):
 class PersonAdd(forms.ModelForm):
 
     class Meta:
-        fields = ('first_name', 'middle_name', 'last_name', 'dob', 'address')
+        fields = ('first_name', 'middle_name', 'last_name', 'dob', 'city','state','address', 'gender')
 
 class ParentAddForm(PersonAdd):
     
@@ -35,4 +35,4 @@ class ChildAddForm(PersonAdd):
     parent = forms.ModelChoiceField(queryset=Parent.objects.all())
     class Meta(PersonAdd.Meta):
         model = Child
-        fields = PersonAdd.Meta.fields + ('school',)
+        fields = PersonAdd.Meta.fields + ('school','grade',)

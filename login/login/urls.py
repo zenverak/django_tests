@@ -11,6 +11,8 @@ urlpatterns = [
         url(r'^main/$', views.Main, name='main'),
         url(r'^main/childadd/$', views.ChildAdd, name='childadd'),
         url(r'^main/parentadd/$', views.ParentAdd, name='parentadd'),
-        url(r'^main/child/(?P<pk>\d+)$',views.ChildView, name='childview'),
-        url(r'^main/parent/(?P<parent_id>\d+)$',views.ParentView, name='parentview'),
+        url(r'^main/child/(?P<pk>\d+)/$',views.ChildView, name='childview'),
+        url(r'^main/parentview/(?P<parent_id>\d+)/$',views.ParentView, name='parentview'),
+        url(r'^main/parentlist/$', views.ParentList, name='parentlist'),
+        url(r'^main/childlist/$', views.ChildList, name='childlist'),
         ]

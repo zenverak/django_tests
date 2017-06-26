@@ -2,16 +2,59 @@
 
 {% block content %}
 <div class="page-header">
-   <h1><a href="/">{{ parent.first_name }} {{ parent.last_name }} </a></h1>
+   <h1><a href="/main/">{{ info.parent.first_name }} {{ info.parent.last_name }} </a></h1>
 </div>
 <div class="content container">
     <div class="row">
         <div>
-            ADDRESS: {{ parent.address }}
+            ADDRESS: {{ info.parent.address }}
         </div>
         <div>
-            DOB:     {{ parent.dob }}
+            DOB:     {{ info.parent.dob }}
         </div>
+        {% if info.children != '' %}
+        <h2> {{ info.parent.first_name }} {{ info.parent.last_name}}'s Children </h2>
+                <table style="width=100%" class='table'>
+        <tr class='column'>
+            <th  class='column'>
+                Child's Name
+            </th>
+            <th class='column'>
+                DOB
+            </th>
+           <th class='column'>
+                Grade Level
+            </th>            
+            <th class='column'>
+                School
+            </th>
+        </tr>
+
+          {% for child in info.children %}
+          
+          <div>
+            
+              <tr>
+              <th>
+                <a href="{% url 'childview' pk=child.pk %}">{{ child.first_name }}  {{ child.last_name }}</a>
+              </th>
+              <th>
+                   {{ child.dob }}
+              </th>
+              <th>
+                   {{ child.grade }}
+              </th>
+              <th>
+                   {{ child.school }}
+              </th>
+              <tr>
+            
+          </div>
+          {% endfor %}
+          </table>
+          
+        
+        {% endif %}
 	</div>
 </div>
 {% endblock %}

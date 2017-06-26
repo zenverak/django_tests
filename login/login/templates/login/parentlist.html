@@ -1,0 +1,17 @@
+{% extends 'login/base.html' %}
+
+{% block content %}
+<div class="page-header">
+   <h1><a href="/main/">Parents</a></h1>
+</div>
+<div class="content container">
+    {% for parent in parents %}
+    <div class="row">
+        <div class="col-md-8">
+           <a href="{% url 'parentview' parent_id=parent.parent_id %}"> {{ parent.first_name }} {{ parent.last_name }} </a>
+           
+		</div>
+	</div>
+    {% endfor %}
+</div>
+{% endblock %}
